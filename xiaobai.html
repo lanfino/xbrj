@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片上传</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .upload-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .upload-container h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .upload-container input[type="file"] {
+            display: none;
+        }
+        .upload-container label {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .upload-container label:hover {
+            background-color: #0056b3;
+        }
+        .upload-container button {
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .upload-container button:hover {
+            background-color: #218838;
+        }
+        .upload-container p {
+            margin-top: 15px;
+            color: #555;
+        }
+        .file-name {
+            margin-top: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>上传图片</h2>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" id="file-input" accept=".jpg, .jpeg, .png, .gif" required>
+            <label for="file-input">选择图片</label>
+            <button type="submit">上传图片</button>
+        </form>
+        <p>支持JPG, PNG, GIF格式</p>
+        <p class="file-name" id="file-name">请选择一个文件</p>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        fileInput.addEventListener('change', function() {
+            const fileName = this.files.length > 0 ? this.files[0].name : '请选择一个文件';
+            fileNameDisplay.textContent = `选择的文件: ${fileName}`;
+        });
+    </script>
+</body>
+</html>
